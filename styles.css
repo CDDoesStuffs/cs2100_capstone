@@ -20,31 +20,42 @@ header {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 50px;
+    font-weight: bold;
 }
 
 main {
     background-color: #242424;
     color: #FFFFFF;
+    padding: 20px;
 }
 
 footer, section {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
+    padding: 20px;
 }
 
 div {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
+    padding: 20px;
 }
 
-h1 {
+section h1 {
     color: #FFFFFF;
+    font-weight: normal;
 }
 
-h2 {
+section h2 {
     color: #FFFFFF
+    font-weight: normal;
 }
 
 footer a:link {
