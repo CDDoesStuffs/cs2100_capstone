@@ -17,7 +17,8 @@ main {
 
 footer, div {
     background-color: #242424;
-    color: #FFFFFF;
+    color: #cfcfcf;
+    text-align: center;
 }
 
 h1 {
