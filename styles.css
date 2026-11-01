@@ -1,7 +1,7 @@
 .flex-container {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 5px;
 }
 
 .flex-container .box {
@@ -20,8 +20,10 @@ header {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin: 20px;
+    border-radius: 20px;
 }
 
 header h1 {
@@ -32,24 +34,31 @@ header h1 {
 main {
     background-color: #242424;
     color: #FFFFFF;
-    padding: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 20px;
+    border-radius: 20px;
 }
 
 footer, section {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
-    padding: 20px;
-    margin: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 20px;
+    border-radius: 20px;
 }
 
 div {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin: 10px;
+    border-radius: 20px;
 }
 
 section h1 {
