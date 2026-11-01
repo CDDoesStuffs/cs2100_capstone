@@ -1,3 +1,7 @@
+.container {
+    display: flex;
+}
+
 body {
     background-color: #262626;
     color: #FFFFFF;
@@ -15,7 +19,7 @@ main {
     color: #FFFFFF;
 }
 
-footer, div {
+footer, section {
     background-color: #242424;
     color: #cfcfcf;
     text-align: center;
