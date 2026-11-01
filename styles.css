@@ -1,6 +1,6 @@
 .flex-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
 }
 
@@ -22,8 +22,7 @@ header {
     background-color: #242424;
     color: #FFFFFF;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 30px;
     margin: 20px;
     border-radius: 20px;
 }
@@ -84,9 +83,7 @@ footer a:hover {
 }
 
 @media (min-width: 600px) {
-
-}
-
-@media (min-width: 1024px) {
-
+    .flex-container {
+        flex-direction: row;
+    }
 }
