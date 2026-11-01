@@ -1,5 +1,7 @@
 body {
-
+    background-color: #FFFFFF;
+    color: #262626;
+    font-family: Verdana, sans-serif;
 }
 
 header {
@@ -23,5 +25,5 @@ h1 {
 }
 
 @media (min-width: 1024px) {
-    
+
 }
