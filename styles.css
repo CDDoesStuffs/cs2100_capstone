@@ -7,7 +7,9 @@
 .flex-container .box {
     flex: 1;
     padding: 20px;
-    background-color: #363636
+    background-color: #363636;
+    border-width: medium;
+    border-color: #a3a3a3;
 }
 
 body {
@@ -35,8 +37,8 @@ main {
     background-color: #242424;
     color: #FFFFFF;
     padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin: 20px;
     border-radius: 20px;
 }
