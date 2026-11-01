@@ -25,6 +25,11 @@ footer, section {
     text-align: center;
 }
 
+div {
+    background-color: #242424;
+    color: #FFFFFF;
+}
+
 h1 {
     color: #FFFFFF;
 }
