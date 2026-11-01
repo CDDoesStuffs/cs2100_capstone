@@ -11,5 +11,7 @@ pokemonForm.addEventListener('submit', async (event) => {
         if (!response.ok) {
             throw new Error('Pokemon not found');
         }
+
+        const data = await response.json();
     }
 });
