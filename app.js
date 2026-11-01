@@ -9,10 +9,12 @@ pokemonForm.addEventListener('submit', async (event) => {
         const response = await fetch('https://pokeapi.co{query}');
 
         if (!response.ok) {
-            throw new Error('Pokemon not found');
+            throw new Error('Pokémon not found');
         }
 
         const data = await response.json();
         console.log('Name: ', data.name);
+    } catch (error) {
+        console.error('Error getting Pokémon data')
     }
 });
