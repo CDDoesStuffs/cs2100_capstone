@@ -29,6 +29,14 @@ h2 {
     color: #FFFFFF
 }
 
+footer a:link {
+    color: #cfcfcf;
+}
+
+footer a:hover {
+    color: #a3a3a3
+}
+
 @media (min-width: 600px) {
 
 }
