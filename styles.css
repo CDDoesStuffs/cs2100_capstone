@@ -1,26 +1,23 @@
 body {
     background-color: #FFFFFF;
     color: #262626;
-    font-family: Verdana, sans-serif;
+    font-family: Helvetica, sans-serif;
 }
 
 header {
     background-color: #D4D4D4;
     color: #262626;
-    font-family: Verdana, sans-serif;
     text-align: center;
 }
 
 main {
     background-color: #D4D4D4;
     color: #262626;
-    font-family: Verdana, sans-serif;
 }
 
 footer, div {
     background-color: #D4D4D4;
     color: #262626;
-    font-family: Verdana, sans-serif;
 }
 
 h1 {
