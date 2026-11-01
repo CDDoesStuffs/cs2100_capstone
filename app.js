@@ -13,5 +13,6 @@ pokemonForm.addEventListener('submit', async (event) => {
         }
 
         const data = await response.json();
+        console.log('Name: ', data.name);
     }
 });
