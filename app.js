@@ -7,7 +7,7 @@ pokemonForm.addEventListener('submit', async (event) => {
     const query = pokemonInput.value.trim().toLowerCase();
 
     try {
-        const response = await fetch(`https://pokeapi.co/${query}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
 
         if (!response.ok) {
             throw new Error('Pokémon not found');
