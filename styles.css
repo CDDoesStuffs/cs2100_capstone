@@ -21,6 +21,7 @@ header {
     color: #FFFFFF;
     text-align: center;
     padding: 20px;
+    margin: 20px;
 }
 
 header h1 {
@@ -32,6 +33,7 @@ main {
     background-color: #242424;
     color: #FFFFFF;
     padding: 20px;
+    margin: 20px;
 }
 
 footer, section {
@@ -39,6 +41,7 @@ footer, section {
     color: #FFFFFF;
     text-align: center;
     padding: 20px;
+    margin: 10px;
 }
 
 div {
@@ -46,6 +49,7 @@ div {
     color: #FFFFFF;
     text-align: center;
     padding: 20px;
+    margin: 10px;
 }
 
 section h1 {
