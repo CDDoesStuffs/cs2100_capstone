@@ -15,6 +15,9 @@ pokemonForm.addEventListener('submit', async (event) => {
 
         const data = await response.json();
         console.log('Name: ', data.name);
+        console.log('ID: ', data.id);
+        console.log('Height: ', data.height);
+        console.log('Weight: ', data.weight);
     } catch (error) {
         console.error('Error getting Pokémon data', error);
     }
