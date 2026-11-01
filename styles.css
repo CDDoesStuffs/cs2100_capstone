@@ -2,6 +2,12 @@
     display: flex;
 }
 
+.container .box {
+    flex: 1;
+    padding: 20px;
+    background-color: #363636
+}
+
 body {
     background-color: #262626;
     color: #FFFFFF;
@@ -21,7 +27,7 @@ main {
 
 footer, section {
     background-color: #242424;
-    color: #cfcfcf;
+    color: #FFFFFF;
     text-align: center;
 }
 
