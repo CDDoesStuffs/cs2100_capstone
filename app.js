@@ -20,6 +20,8 @@ pokemonForm.addEventListener('submit', async (event) => {
 
         displayPokemonSprite(data.name, 'sprite-container');
         displayPokemonName(data.name, 'name-container');
+        displayPokemonDetails(data.name, 'details-container');
+        
     } catch (error) {
         console.error('Error getting Pokémon data', error);
     }
@@ -69,9 +71,9 @@ async function displayPokemonName(pokemonNameOrId, nameContainerId) {
         }
         
         const data = await response.json();
-        const nameField = document.createElement('p');
-        nameField.textContent = data.name;
-        nameContainer.appendChild(nameField);
+        const name = document.createElement('p');
+        name.textContent = data.name;
+        nameContainer.appendChild(name);
 
         nameContainer.style.textTransform = 'capitalize';
         
@@ -79,3 +81,45 @@ async function displayPokemonName(pokemonNameOrId, nameContainerId) {
         console.error('There was a problem displaying the name', error);
     }
 }
+
+/**
+ * Displays information about a Pokémon in the General Info section other than the sprite or name (e.g., types, abilities, etc.)
+ * 
+ * @param {*} pokemonNameOrId the name or ID of the Pokémon to display
+ * @param {*} infoContainerId the ID of the container where the information will be displayed (General Info section)
+ */
+async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
+    const infoContainer = document.getElementById(infoContainerId);
+
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
+        if (!response.ok) {
+            throw new Error('Pokémon not found');
+        }
+
+        const data = await response.json();
+        const details = document.createElement('div');
+        
+        const id = `#${data.id.toString().padStart(3, "0")}`;
+        const types = data.types.map(typeInfo => typeInfo.type.name).join(', ');
+        const abilities = data.abilities.map(abilityInfo => abilityInfo.ability.name).join(', ');
+        const height = data.height / 10;
+        const weight = data.weight / 10;
+
+        const stats = data.stats.map(statInfo => `${statInfo.stat.name}: ${statInfo.base_stat}`).join(', ');
+        
+        details.innerHTML = `
+            <p>ID: ${id}</p>
+            <p>Types: ${types}</p>
+            <p>Abilities: ${abilities}</p>
+            <p>Height: ${height} m</p>
+            <p>Weight: ${weight} kg</p>
+            <p>Base Stats: ${stats}</p>
+        `;
+
+        infoContainer.appendChild(details); 
+        
+        } catch (error) {
+            console.error('There was a problem displaying the details', error);
+        }
+    }
