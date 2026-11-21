@@ -16,12 +16,16 @@ pokemonForm.addEventListener('submit', async (event) => {
             throw new Error('Pokémon not found');
         }
 
+        document.getElementById('sprite-container').innerHTML = '';
+        document.getElementById('name-container').innerHTML = '';
+        document.getElementById('details-container').innerHTML = '';
+
         const data = await response.json();
 
         displayPokemonSprite(data.name, 'sprite-container');
         displayPokemonName(data.name, 'name-container');
         displayPokemonDetails(data.name, 'details-container');
-        
+
     } catch (error) {
         console.error('Error getting Pokémon data', error);
     }
@@ -47,7 +51,6 @@ async function displayPokemonSprite(pokemonNameOrId, spriteContainerId) {
         sprite.src = data.sprites.front_default;
         sprite.alt = `${pokemonNameOrId}'s sprite`;
         
-        spriteContainer.innerHTML = '';
         spriteContainer.appendChild(sprite);
 
     } catch (error) {
@@ -73,8 +76,9 @@ async function displayPokemonName(pokemonNameOrId, nameContainerId) {
         const data = await response.json();
         const name = document.createElement('p');
         name.textContent = data.name;
-        nameContainer.appendChild(name);
 
+        nameContainer.innerHTML = ''; 
+        nameContainer.appendChild(name);
         nameContainer.style.textTransform = 'capitalize';
         
     } catch (error) {
@@ -107,7 +111,7 @@ async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
         const weight = data.weight / 10;
 
         const stats = data.stats.map(statInfo => `${statInfo.stat.name}: ${statInfo.base_stat}`).join(', ');
-        
+
         details.innerHTML = `
             <p>ID: ${id}</p>
             <p>Types: ${types}</p>
