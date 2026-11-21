@@ -19,6 +19,7 @@ pokemonForm.addEventListener('submit', async (event) => {
         const data = await response.json();
 
         displayPokemonSprite(data.name, 'sprite-container');
+        displayPokemonName(data.name, 'name-container');
     } catch (error) {
         console.error('Error getting Pokémon data', error);
     }
@@ -49,5 +50,32 @@ async function displayPokemonSprite(pokemonNameOrId, spriteContainerId) {
 
     } catch (error) {
         console.error('There was a problem displaying the sprite', error);
+    }
+}
+
+/**
+ * Displays the name of a Pokémon in the specified container
+ * 
+ * @param {*} pokemonNameOrId the name or ID of the Pokémon to display
+ * @param {*} nameContainerId the ID of the container where the name will be displayed
+ */
+async function displayPokemonName(pokemonNameOrId, nameContainerId) {
+    const nameContainer = document.getElementById(nameContainerId);
+
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
+        if (!response.ok) {
+            throw new Error('Pokémon not found');
+        }
+        
+        const data = await response.json();
+        const nameField = document.createElement('p');
+        nameField.textContent = data.name;
+        nameContainer.appendChild(nameField);
+
+        nameContainer.style.textTransform = 'capitalize';
+        
+    } catch (error) {
+        console.error('There was a problem displaying the name', error);
     }
 }
