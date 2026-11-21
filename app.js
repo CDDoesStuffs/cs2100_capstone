@@ -22,3 +22,7 @@ pokemonForm.addEventListener('submit', async (event) => {
         console.error('Error getting Pokémon data', error);
     }
 });
+
+async function displayPokemonSprite(pokemonName) {
+
+}
