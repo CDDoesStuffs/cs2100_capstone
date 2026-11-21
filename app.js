@@ -1,6 +1,9 @@
 const pokemonForm = document.getElementById('search-form');
 const pokemonInput = document.getElementById('pokemon-input');
 
+/**
+ * Handles the form submission event
+ */
 pokemonForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -23,6 +26,30 @@ pokemonForm.addEventListener('submit', async (event) => {
     }
 });
 
-async function displayPokemonSprite(pokemonName) {
+/**
+ * Displays the sprite of a Pokémon in the specified container
+ * 
+ * @param {*} pokemonNameOrId the name or ID of the Pokémon to fetch the sprite for
+ * @param {*} spriteContainerId the ID of the container where the sprite will be displayed
+ */
+async function displayPokemonSprite(pokemonNameOrId, spriteContainerId) {
+    const spriteContainer = document.getElementById(spriteContainerId);
 
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
+        if (!response.ok) {
+            throw new Error('Pokémon not found');
+        }
+
+        const data = await response.json();
+        const sprite = document.createElement('img');
+        sprite.src = data.sprites.front_default;
+        sprite.alt = `${pokemonNameOrId}'s sprite`;
+        
+        spriteContainer.innerHTML = '';
+        spriteContainer.appendChild(sprite);
+
+    } catch (error) {
+        console.error('There was a problem displaying the sprite', error);
+    }
 }
