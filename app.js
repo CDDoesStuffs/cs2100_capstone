@@ -7,10 +7,10 @@ const pokemonInput = document.getElementById('pokemon-input');
 pokemonForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const query = pokemonInput.value.trim().toLowerCase();
+    const pokemonNameOrId = pokemonInput.value.trim().toLowerCase();
 
     try {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
 
         if (!response.ok) {
             throw new Error('Pokémon not found');
@@ -19,12 +19,14 @@ pokemonForm.addEventListener('submit', async (event) => {
         document.getElementById('sprite-container').innerHTML = '';
         document.getElementById('name-container').innerHTML = '';
         document.getElementById('details-container').innerHTML = '';
+        document.getElementById('iv-container').innerHTML = '';
 
         const data = await response.json();
 
         displayPokemonSprite(data.name, 'sprite-container');
         displayPokemonName(data.name, 'name-container');
         displayPokemonDetails(data.name, 'details-container');
+        displayPokemonIVs(data.name, 'iv-container');
 
     } catch (error) {
         console.error('Error getting Pokémon data', error);
@@ -125,5 +127,30 @@ async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
         
         } catch (error) {
             console.error('There was a problem displaying the details', error);
+        }
+    }
+
+    async function displayPokemonIVs(pokemonNameOrId, ivContainerId) {
+        const ivContainer = document.getElementById(ivContainerId);
+    
+        try {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
+            if (!response.ok) {
+                throw new Error('Pokémon not found');
+            }
+    
+            const data = await response.json();
+            const ivs = document.createElement('div');
+            
+            const ivStats = data.stats.map(statInfo => `${statInfo.stat.name}: ${statInfo.effort}`).join(', ');
+    
+            ivs.innerHTML = `
+                <p>IVs: ${ivStats}</p>
+            `;
+    
+            ivContainer.appendChild(ivs);
+    
+        } catch (error) {
+            console.error('There was a problem displaying the IVs', error);
         }
     }
