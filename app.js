@@ -1,5 +1,13 @@
 const pokemonForm = document.getElementById('search-form');
 const pokemonInput = document.getElementById('pokemon-input');
+const errorMessage = document.getElementById('error-message');
+
+/**
+ * Clears the error message when the user starts typing in the input field, if applicable
+ */
+pokemonInput.addEventListener('input', () => {
+  errorMessage.textContent = '';
+});
 
 /**
  * Handles the form submission event
@@ -8,7 +16,7 @@ pokemonForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const pokemonNameOrId = pokemonInput.value.trim().toLowerCase();
-
+    
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
 
@@ -32,6 +40,7 @@ pokemonForm.addEventListener('submit', async (event) => {
 
     } catch (error) {
         console.error('Error getting Pokémon data', error);
+        errorMessage.textContent = 'Pokémon not found. Please check the name or ID and try again.';
     }
 });
 
