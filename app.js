@@ -104,8 +104,15 @@ async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
         if (!response.ok) {
             throw new Error('Pokémon not found');
         }
-
         const data = await response.json();
+
+        const speciesResponse = await fetch(data.species.url);
+        if (!speciesResponse.ok) {
+            throw new Error('Species data not found');
+        }
+        const speciesData = await speciesResponse.json();
+
+        
         const details = document.createElement('div');
         
         const id = `#${data.id.toString().padStart(3, "0")}`;
@@ -113,6 +120,7 @@ async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
         const abilities = data.abilities.map(abilityInfo => abilityInfo.ability.name).join(', ');
         const height = data.height / 10;
         const weight = data.weight / 10;
+        const eggGroups = speciesData.egg_groups && speciesData.egg_groups.length > 0 ? speciesData.egg_groups.map(groupInfo => groupInfo.name).join(', ') : 'N/A';
 
         const stats = data.stats.map(statInfo => `${statInfo.stat.name}: ${statInfo.base_stat}`).join(', ');
 
@@ -123,6 +131,7 @@ async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
             <p>Height: ${height} m</p>
             <p>Weight: ${weight} kg</p>
             <p>Base Stats: ${stats}</p>
+            <p>Egg Groups: ${eggGroups}</p>
         `;
 
         infoContainer.appendChild(details); 
