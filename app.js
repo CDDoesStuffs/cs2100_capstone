@@ -20,6 +20,7 @@ pokemonForm.addEventListener('submit', async (event) => {
         document.getElementById('name-container').innerHTML = '';
         document.getElementById('details-container').innerHTML = '';
         document.getElementById('iv-container').innerHTML = '';
+        document.getElementById('ev-container').innerHTML = '';
 
         const data = await response.json();
 
@@ -27,6 +28,7 @@ pokemonForm.addEventListener('submit', async (event) => {
         displayPokemonName(data.name, 'name-container');
         displayPokemonDetails(data.name, 'details-container');
         displayPokemonIVs(data.name, 'iv-container');
+        displayPokemonEVs(data.name, 'ev-container');
 
     } catch (error) {
         console.error('Error getting Pokémon data', error);
@@ -152,5 +154,30 @@ async function displayPokemonDetails(pokemonNameOrId, infoContainerId) {
     
         } catch (error) {
             console.error('There was a problem displaying the IVs', error);
+        }
+    }
+
+    async function displayPokemonEVs(pokemonNameOrId, evContainerId) {
+        const evContainer = document.getElementById(evContainerId);
+    
+        try {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNameOrId}`);
+            if (!response.ok) {
+                throw new Error('Pokémon not found');
+            }
+    
+            const data = await response.json();
+            const evs = document.createElement('div');
+            
+            const evStats = data.stats.map(statInfo => `${statInfo.stat.name}: ${statInfo.effort}`).join(', ');
+    
+            evs.innerHTML = `
+                <p>EVs: ${evStats}</p>
+            `;
+    
+            evContainer.appendChild(evs);
+    
+        } catch (error) {
+            console.error('There was a problem displaying the EVs', error);
         }
     }
